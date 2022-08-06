@@ -1,0 +1,106 @@
+/* Extra small devices (phones, 600px and down) */
+.nav-bar {
+
+    height: 0px;
+    position: relative;
+
+    &__icon {
+        z-index: 99;
+        position: absolute;
+        top: 10px;
+        left: 10px;
+    }
+
+    .list {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        list-style-type: none;
+        margin: 0;
+        z-index: 1;
+        height: 100vh;
+        position: relative;
+        top: 0;
+
+        &__item {
+            
+            text-transform: uppercase;
+            position: relative;
+
+            &:not(:last-child) {
+                margin-bottom: 20px;
+            }
+
+            &:not(.active)::after {
+                content: '';
+                position: absolute;
+                width: 100%;
+                height: 1px;
+                left: 0;
+                bottom: 0;
+                transform: scale(0, 1)
+            }
+    
+            &:not(.active):hover::after {
+                transform: scale(1, 1);
+                transition: 0.5s;
+            }
+    
+            &.active {
+                font-weight: bold;
+                cursor: default;
+            }
+        }
+
+        &.opened {
+            transition: transform 1s ease-in-out;
+            transform: scaleX(1); 
+        }
+    
+        &.closed {
+            display: none;
+        }
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+
+    .nav-bar {
+
+        height: 70px;
+        box-shadow: 1px 1px 10px grey;
+        position: sticky;
+
+        &__icon {
+            display: none;
+        }
+
+        .list {
+
+            flex-direction: row;
+            height: inherit;
+    
+            &.closed {
+                display: flex;
+            }
+
+            &__item {
+                &:not(:last-child) {
+                    margin-right: 40px;
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {}
