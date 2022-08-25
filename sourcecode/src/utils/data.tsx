@@ -1,8 +1,8 @@
 import { routesNames } from "../routing/routes-names";
 import { getRoute } from "../routing/routes-utils";
-import { IMenuItem } from "./interfaces";
+import { IAlbum, ILinkItem } from "./interfaces";
 
-export const menuItems : IMenuItem[] = [
+export const menuItems : ILinkItem[] = [
     {
         text: "Acasă",
         path: getRoute(routesNames.ACASA),
@@ -33,7 +33,31 @@ export const menuItems : IMenuItem[] = [
     },
 ];
 
-export const footerSections = [
+export const carouselItems : IAlbum[] = [
+    {
+        id: 1,
+        imageSource: "album1.jpg",
+        artist: "A$AP",
+        album: "",
+        releaseYear: "",
+    },
+    {
+        id: 2,
+        imageSource: "album2.webp",
+        artist: "6lack",
+        album: "",
+        releaseYear: "",
+    },
+    {
+        id: 3,
+        imageSource: "album3.jpg",
+        artist: "kirik",
+        album: "",
+        releaseYear: "",
+    },
+];
+
+export const footerItems : ILinkItem[] = [
     {
         text: "Confidențialitate & Cookies",
         path: getRoute(routesNames.CONFIDENTIALITATECOOKIES),

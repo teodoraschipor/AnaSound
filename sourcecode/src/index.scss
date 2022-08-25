@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  font-size: 15px;
   font-family: courier new;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -17,7 +18,7 @@ code {
     color: white;
   }
 
-  .nav-bar .list {
+  .nav-bar {
     background-color: black;
     * {
       color: white;
@@ -36,6 +37,7 @@ code {
     background-color: black;
     * {
       color: white;
+      background-color: black;
     }
   }
 
@@ -59,7 +61,7 @@ code {
     color: black;
   }
   
-  .nav-bar .list {
+  .nav-bar {
     background-color: white;
     * {
       color: black;
@@ -78,6 +80,7 @@ code {
     background-color: white;
     * {
       color: black;
+      background-color: white;
     }
   }
 

@@ -1,79 +1,49 @@
 import { faBars, faClose } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
+import { useMediaQuery } from "react-responsive";
 import { Link, useLocation } from "react-router-dom";
 import { menuItems } from "../../utils/data";
-import { IMenuItem } from "../../utils/interfaces";
+import { ILinkItem } from "../../utils/interfaces";
 import "./Menu.scss";
 
 const Menu = () => {
 
     const location = useLocation();
     const [ isOpened, setIsOpened ] = useState(false);
+    const isSmallDevice  = useMediaQuery({ query: "(max-width: 992px)" });
 
-    const renderLink = ({path, text} : IMenuItem) => {
+    const renderLink = ({path, text} : ILinkItem) => {
         const isActive = location.pathname === path;
         return (
-            <li className={"list__item " + (isActive && "active")} key={text}>
-                <Link to={path} onClick={() => setIsOpened(false)}> {text} </Link>
-            </li>)
+                <Link to={path} className={"nav-bar__item " + (isActive && "active")} onClick={() => setIsOpened(false)} key={text}> {text} </Link>
+                );
     }
 
-    const handleMenuOpened = () => {
-        setIsOpened(!isOpened);
-    }
-
-    return(
-        <nav className="nav-bar">
-            <FontAwesomeIcon className={"nav-bar__icon " + (isOpened ? "opened" : "closed")} icon={isOpened ? faClose : faBars} onClick={handleMenuOpened}/>
-            <ul className={"list " + (isOpened ? "opened" : "closed")}>
-                {menuItems.map((item: IMenuItem) => renderLink(item))}
-            </ul>
-        </nav>
-    );
-}
-
-export default Menu;
-
-/**
- * import { faBars, faClose } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useRef, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { menuItems } from "../../utils/data";
-import { IMenuItem } from "../../utils/interfaces";
-import "./Menu.scss";
-
-const Menu = () => {
-
-    const location = useLocation();
-    const navRef = useRef();
-    const [ isOpened, setIsOpened ] = useState(false);
-
-    const renderLink = ({path, text} : IMenuItem) => {
-        const isActive = location.pathname === path;
-        return (
-            <li className={"list__item " + (isActive && "active")} key={text}>
-                <Link to={path}> {text} </Link>
-            </li>)
-    }
-
-    const handleMenuOpened = () => {
-        if(navRef.current) {  
-            navRef.current.classList.toggle("responsive");
+    const handleNavClassName = () => {
+        let navClasses = [];
+        if(isSmallDevice) {
+            if(isOpened) {
+                navClasses.push("opened");
+            } else {
+                navClasses.push("closed");
+            }
         }
+        return navClasses.join(" ");
+    }
+
+    const handleMenuOpened = () => {
         setIsOpened(!isOpened);
     }
 
     return(
-        <nav className="nav-bar">
-            <FontAwesomeIcon className={"nav-bar__icon " + (isOpened ? "opened" : "closed")} icon={isOpened ? faClose : faBars} onClick={handleMenuOpened}/>
-            <ul className={"list " + (isOpened ? "opened" : "closed")} ref={navRef}>
-                {menuItems.map((item: IMenuItem) => renderLink(item))}
-            </ul>
-        </nav>
+        <div>
+            <FontAwesomeIcon className={"icon " + (isOpened ? "opened" : "closed")} icon={isOpened ? faClose : faBars} onClick={handleMenuOpened}/>
+            <nav className={"nav-bar " + handleNavClassName()}>
+                {menuItems.map((item: ILinkItem) => renderLink(item))}
+            </nav>
+        </div>
     );
 }
 
 export default Menu;
- */

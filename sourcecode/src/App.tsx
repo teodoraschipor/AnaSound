@@ -1,7 +1,6 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.scss';
 import AppRouter from './routing/AppRouter';
+import { Provider } from "react-redux";
 
 function App() {
   return (
